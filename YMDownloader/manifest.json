@@ -1,0 +1,41 @@
+{
+    "manifest_version": 2,
+    "name": "Yandex.Music downloader",
+    "short_name": "Yandex.Music downloader",
+    "description": "Tracks and saves all Yandex Music tracks",
+    "version": "0.1.0.0",
+    "author": "Yet another extension maker",
+    "browser_action": {
+        "default_icon": "icon.png",
+        "default_title": "Yandex.Music downloader",
+        "default_popup": "popup.html"
+    },
+    "background": {
+        "persistent": true,
+        "scripts": [
+            "background.js"
+        ]
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "*://music.yandex.ru/*"
+            ],
+            "js": [
+                "zepto.min.js",
+                "js.js"
+            ],
+            "css":[
+                "css.css"
+            ]
+        }
+    ],
+    "permissions": [
+        "downloads",
+        "tabs",
+        "activeTab",
+        "webRequest",
+        "*://*.yandex.ru/",
+        "*://*.yandex.net/"
+    ]
+}

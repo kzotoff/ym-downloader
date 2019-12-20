@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Yandex.Music downloader!</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+            body {
+                background: white;
+                width: auto;
+            }
+            .ext-6677-links {
+                padding: 8px;
+            }
+            .ext-6677-nothing {
+                padding: 8px;
+                font-style: italic;
+                color: #999;
+                white-space: nowrap;
+            }
+
+            .ext-6677-one-link {
+                display: flex;
+                justify-content: space-between;
+                padding: 4px;
+                white-space: nowrap;
+                margin-bottom: 2px;
+            }
+            .ext-6677-one-link:hover {
+                background-color: #eee;
+            }
+
+            .ext-6677-link-text {
+                flex: 100% 1 1;
+            }
+
+            .ext-6677-svg-button {
+                width: 16px;
+                height: 16px;
+                padding: 0 2px 4px 2px;
+                margin-left: 8px;
+                cursor: pointer;
+            }
+            .ext-6677-svg-button:not(:hover) svg {
+                fill: #555;
+            }
+        </style>
+
+        <script src="zepto.min.js"></script>
+        <script src="popup.js"></script>
+    </head>
+
+    <body class="ext-6677">
+        <div class="ext-6677-links">
+        </div>
+    </body>
+</html>
