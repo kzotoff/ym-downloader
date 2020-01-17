@@ -1,15 +1,23 @@
 chrome.browserAction.setBadgeBackgroundColor({ color: [255, 0, 0, 1] });
 
 var trackList = [];
+var nowPlaying = {};
 
 var setBadge = function(text) {
     chrome.browserAction.setBadgeText({ text: text });
 }
 
-var addTrack = function(elem) {
+var setCurrent = function(data) {
+    nowPlaying = {
+        title: data.title,
+        author: data.author,
+    };
+};
+
+var addTrack = function(data) {
 
     var exists = trackList.find( function(e) {
-        return (e.title == elem.title) && (e.author == elem.author);
+        return (e.title == data.title) && (e.author == data.author);
     });
 
     if (exists) {
@@ -17,10 +25,10 @@ var addTrack = function(elem) {
     }
 
     trackList.push({
-        tabId: elem.tabId,
-        url: elem.url,
-        title: elem.title,
-        author: elem.author,
+        tabId: data.tabId,
+        url: data.url,
+        title: data.title,
+        author: data.author,
     });
 
     trackList = trackList.slice(-10);
@@ -70,6 +78,10 @@ chrome.webRequest.onBeforeRequest.addListener(
                                 title: result.title,
                                 author: result.author,
                             });
+                            setCurrent({
+                                title: result.title,
+                                author: result.author,
+                            });
                         }
                     }
                 );
@@ -91,6 +103,10 @@ chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
     switch (message.action) {
         case 'trackList':
             sendResponse(trackList);
+            break;
+
+        case 'nowPlaying':
+            sendResponse(nowPlaying);
             break;
 
         case 'deleteTrack':

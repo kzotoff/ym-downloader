@@ -47,6 +47,48 @@
             .ext-6677-svg-button:not(:hover) svg {
                 fill: #555;
             }
+
+            .ext-6677-controls {
+                display: flex;
+                height: 44px;
+                width: 100%;
+                background-color: #eee;
+                justify-content: left;
+                padding: 8px;
+            }
+            .ext-6677-controls-button {
+                width: 48px;
+                margin: 0 4px;
+                border: 1px #ccc solid;
+                text-align: center;
+                padding: 4px;
+                cursor: pointer;
+                transition: background-color 0.3s;
+            }
+            .ext-6677-controls-button:hover {
+                background-color: #aaa;
+            }
+            .ext-6677-controls-button svg {
+                height: 100%;
+            }
+            .ext-6677-now-playing {
+                position: relative;
+                top: -1px;
+                margin-left: 4px;
+            }
+            .ext-6677-now-playing-title {
+                font-weight: bold;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+            }
+            .ext-6677-now-playing-author {
+                white-space: nowrap;
+                text-overflow: ellipsis;
+            }
+            .ext-6677-recent-title {
+                font-weight: bold;
+                margin: 8px 0 0 16px;
+            }
         </style>
 
         <script src="zepto.min.js"></script>
@@ -54,6 +96,29 @@
     </head>
 
     <body class="ext-6677">
+        <div class="ext-6677-controls">
+            <div class="ext-6677-controls-button ext-6677-prev">
+                <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 21 21">
+                    <path d="M 18,2 2 11 18 19 z" />
+                </svg>
+            </div>
+            <div class="ext-6677-controls-button ext-6677-play">
+                <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 21 21">
+                    <path d="M 3,1 8 1 8 20 3 20 z" />
+                    <path d="M 13,1 18 1 18 20 13 20 z" />
+                </svg>
+            </div>
+            <div class="ext-6677-controls-button ext-6677-next">
+                <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 21 21">
+                    <path d="M 2,2 18 11 2 19 z" />
+                </svg>
+            </div>
+            <div class="ext-6677-now-playing">
+                <div class="ext-6677-now-playing-title">...</div>
+                <div class="ext-6677-now-playing-author">...</div>
+            </div>
+        </div>
+        <div class="ext-6677-recent-title">Recent tracks:</div>
         <div class="ext-6677-links">
         </div>
     </body>

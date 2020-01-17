@@ -21,12 +21,31 @@ function getCurrentTrackInfo() {
 }
 
 $(function() {
-    console.log('%cAll hail yandex.music downloader', 'color: red;');
+    console.log('%cAll hail yandex.music tools', 'color: red;');
 
     chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
         if (message.action == 'getDetails') {
             sendResponse(getCurrentTrackInfo());
         }
     });
+
+
+    var nameObserver = new MutationObserver(function(data) {
+        console.log('observer triggered');
+        console.log('data:', data);
+    });
+
+    installInterval = setInterval(function() {
+
+        var trackTitleContainer = $('.track__name-innerwrap .track__title');
+        console.log(trackTitleContainer.length);
+
+        if (trackTitleContainer.length) {
+            clearInterval(installInterval);
+            trackTitleContainer.css('border', '1px red dashed');
+
+            nameObserver.observe(trackTitleContainer.get(0), {subtree: true, childList: true })
+        }
+    }, 200);
 
 });

@@ -1,15 +1,41 @@
 'use strict';
 
+/**
+ *
+ */
 $(function() {
 
     refreshList();
-
+    showNowPlaying();
 });
 
+/**
+ *
+ */
 var playItem = function(url) {
     window.open(url);
 }
 
+/**
+ *
+ */
+var showNowPlaying = function(data) {
+
+    chrome.runtime.sendMessage(
+        {
+            action: 'nowPlaying'
+        },
+        function(response) {
+            $('.ext-6677-now-playing-title').text(response.title);
+            $('.ext-6677-now-playing-author').text(response.author);
+        }
+    );
+
+}
+
+/**
+ *
+ */
 var refreshList = function() {
 
     chrome.runtime.sendMessage(
@@ -22,7 +48,11 @@ var refreshList = function() {
     );
 }
 
+/**
+ *
+ */
 var deleteItem = function(url) {
+
     chrome.runtime.sendMessage(
         {
             action: 'deleteTrack',
@@ -34,13 +64,20 @@ var deleteItem = function(url) {
     );
 }
 
+/**
+ *
+ */
 var downloadItem = function(url, filename) {
+
     chrome.downloads.download({
         url: url,
         filename: filename
     });
 }
 
+/**
+ *
+ */
 var showTrackInfo = function(info) {
 
     $('.ext-6677-links').empty();
